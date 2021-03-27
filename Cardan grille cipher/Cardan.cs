@@ -165,6 +165,12 @@ namespace Cardan_grille_cipher
             Random rnd = new Random();
             text = text.Replace(" ", "");
 
+            if (text.Length > key.Length)
+            {
+                System.Windows.Forms.MessageBox.Show("Невозможно зашифровать сообщение данным ключом!", "Ошибка", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                return "Невозможно зашифровать сообщение данным ключом!";
+            }
+
             if (text.Length < key.Length)
             {
                 int z = key.Length - text.Length;
@@ -235,6 +241,12 @@ namespace Cardan_grille_cipher
         public string decrypt(string key, string cipherText, int k)
         {
             cipherText = cipherText.Replace(" ", "");
+
+            if (cipherText.Length > key.Length)
+            {
+                System.Windows.Forms.MessageBox.Show("Невозможно расшифровать сообщение данным ключом!", "Ошибка", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                return "Невозможно расшифровать сообщение данным ключом!";
+            }
 
             StringBuilder text = new StringBuilder();
 
