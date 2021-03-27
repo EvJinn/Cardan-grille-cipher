@@ -56,11 +56,12 @@ namespace Cardan_grille_cipher
                         FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor = Color.Red;
                         keyval[i, j] = Convert.ToInt32(FormInstanse.cardanGrille.Rows[i].Cells[j].Value);
                     }
-                    FormInstanse.keyBox.Text += Convert.ToInt32(val[i,j]);
+                    
                 }
             int count = 0;
             for (int i = 0; i < k * 2; i++)
                 for (int j = 0; j < k * 2; j++)
+                {
                     if (keyval[i, j] != 0)
                     {
                         for (int n = 0; n < k * 2; n++)
@@ -77,6 +78,11 @@ namespace Cardan_grille_cipher
                                 }
                             }
                     }
+                    FormInstanse.keyBox.Text += Convert.ToInt32(val[i, j]);
+
+                }
+            
+                    
 
         }
 
