@@ -148,6 +148,15 @@ namespace Cardan_grille_cipher
 
         }
 
+        public void generateKey(int k)
+        {
+            FormInstanse.keyBox.Text = "";
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                    if (FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor == Color.Red) FormInstanse.keyBox.Text += "1";
+                    else FormInstanse.keyBox.Text += "0";
+        }
+
         public void crypt()
         {
 
