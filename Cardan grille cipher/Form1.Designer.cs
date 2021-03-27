@@ -85,11 +85,13 @@ namespace Cardan_grille_cipher
             this.cardanGrille.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cardanGrille.ColumnHeadersVisible = false;
             this.cardanGrille.Location = new System.Drawing.Point(16, 64);
+            this.cardanGrille.MultiSelect = false;
             this.cardanGrille.Name = "cardanGrille";
             this.cardanGrille.ReadOnly = true;
             this.cardanGrille.RowHeadersVisible = false;
             this.cardanGrille.RowHeadersWidth = 51;
-            this.cardanGrille.RowTemplate.Height = 25;
+            this.cardanGrille.RowTemplate.Height = 30;
+            this.cardanGrille.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.cardanGrille.Size = new System.Drawing.Size(772, 329);
             this.cardanGrille.TabIndex = 4;
             // 
@@ -182,12 +184,12 @@ namespace Cardan_grille_cipher
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox keyBox;
-        private System.Windows.Forms.TextBox cipherTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonDecrypt;
         private System.Windows.Forms.Button buttonCrypt;
         public System.Windows.Forms.DataGridView cardanGrille;
+        public System.Windows.Forms.TextBox keyBox;
+        private System.Windows.Forms.TextBox cipherTextBox;
     }
 }
 

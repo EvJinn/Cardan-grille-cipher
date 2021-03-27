@@ -15,7 +15,7 @@ namespace Cardan_grille_cipher
         public Form1()
         {
             InitializeComponent();
-            
+            cardanGrille.SelectionChanged += cardanGrille_SelectionChanged;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -30,10 +30,17 @@ namespace Cardan_grille_cipher
             cardanGrille.RowCount = Convert.ToInt32(numericUpDown1.Value) * 2;
             cardanGrille.ColumnCount = Convert.ToInt32(numericUpDown1.Value) * 2;
             foreach (DataGridViewColumn column in cardanGrille.Columns)
-                column.Width = 25;
+                column.Width = 30;
 
             Cardan cardan = new Cardan(this);
             cardan.digitsFillGrille(Convert.ToInt32(numericUpDown1.Value));
+            cardan.generateKey(Convert.ToInt32(numericUpDown1.Value));
+        }
+
+        private void cardanGrille_SelectionChanged(object sender, EventArgs e)
+        {
+            if (MouseButtons != System.Windows.Forms.MouseButtons.None)
+                ((DataGridView)sender).CurrentCell = null;
         }
 
         private void buttonDecrypt_Click(object sender, EventArgs e)
