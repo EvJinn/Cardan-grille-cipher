@@ -148,23 +148,153 @@ namespace Cardan_grille_cipher
 
         }
 
-        public void generateKey(int k)
+        public string generateKey(int k)
         {
-            FormInstanse.keyBox.Text = "";
+            StringBuilder key = new StringBuilder();
+
             for (int i = 0; i < k * 2; i++)
                 for (int j = 0; j < k * 2; j++)
-                    if (FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor == Color.Red) FormInstanse.keyBox.Text += "1";
-                    else FormInstanse.keyBox.Text += "0";
+                    if (FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor == Color.Red) key.Append("1");
+                    else key.Append("0");
+
+            return string.Join("", key);
         }
 
-        public void crypt()
+        public string crypt(string key, string text, int k)
         {
+            Random rnd = new Random();
+            text = text.Replace(" ", "");
 
+            if (text.Length < key.Length)
+            {
+                int z = key.Length - text.Length;
+                for (int i = 0; i < z; i++)
+                {
+                    char symb = (char)rnd.Next(0x0410, 0x44F);
+                    text = text.PadRight(text.Length + 1, symb);
+                }
+            }
+
+            StringBuilder cipherText = new StringBuilder();
+
+            char[,] keyGrid = new char[k * 2, k * 2];
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                    keyGrid[i, j] = key[i * k * 2 + j];
+
+            int a = 0;
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    if (keyGrid[i, j] == '1')
+                    {
+                        FormInstanse.cardanGrille.Rows[i].Cells[j].Value = Convert.ToString(text[a]);
+                        a++;
+                    }
+                }
+
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    if (keyGrid[k*2 - j - 1, i] == '1')
+                    {
+                        FormInstanse.cardanGrille.Rows[i].Cells[j].Value = Convert.ToString(text[a]);
+                        a++;
+                    }
+                }
+
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    if (keyGrid[k * 2 - i - 1, k * 2 - j - 1] == '1')
+                    {
+                        FormInstanse.cardanGrille.Rows[i].Cells[j].Value = Convert.ToString(text[a]);
+                        a++;
+                    }
+                }
+
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    if (keyGrid[j, k * 2 - i - 1] == '1')
+                    {
+                        FormInstanse.cardanGrille.Rows[i].Cells[j].Value = Convert.ToString(text[a]);
+                        a++;
+                    }
+                }
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor = Color.White;
+                    cipherText.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
+                }
+
+            return string.Join("", cipherText);
         }
 
-        public void decrypt()
+        public string decrypt(string key, string cipherText, int k)
         {
+            cipherText = cipherText.Replace(" ", "");
 
+            StringBuilder text = new StringBuilder();
+
+            char[,] keyGrid = new char[k * 2, k * 2];
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                    keyGrid[i, j] = key[i * k * 2 + j];
+
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor = Color.White;
+                    FormInstanse.cardanGrille.Rows[i].Cells[j].Value = Convert.ToString(cipherText[i * k * 2 + j]);
+                }
+
+            int a = 0;
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    if (keyGrid[i, j] == '1')
+                    {
+                        text.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
+                        a++;
+                    }
+                }
+
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    if (keyGrid[k * 2 - j - 1, i] == '1')
+                    {
+                        text.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
+                        a++;
+                    }
+                }
+
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    if (keyGrid[k * 2 - i - 1, k * 2 - j - 1] == '1')
+                    {
+                        text.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
+                        a++;
+                    }
+                }
+
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                {
+                    if (keyGrid[j, k * 2 - i - 1] == '1')
+                    {
+                        text.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
+                        a++;
+                    }
+                }
+            for (int i = 0; i < k * 2; i++)
+                for (int j = 0; j < k * 2; j++)
+                    FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor = Color.White;
+
+            return string.Join("", text);
         }
 
     }

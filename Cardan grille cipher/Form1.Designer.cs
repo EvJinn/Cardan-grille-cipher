@@ -188,8 +188,8 @@ namespace Cardan_grille_cipher
         private System.Windows.Forms.Button buttonDecrypt;
         private System.Windows.Forms.Button buttonCrypt;
         public System.Windows.Forms.DataGridView cardanGrille;
-        public System.Windows.Forms.TextBox keyBox;
-        private System.Windows.Forms.TextBox cipherTextBox;
+        private System.Windows.Forms.TextBox keyBox;
+        public System.Windows.Forms.TextBox cipherTextBox;
     }
 }
 

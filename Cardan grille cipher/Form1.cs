@@ -34,7 +34,8 @@ namespace Cardan_grille_cipher
 
             Cardan cardan = new Cardan(this);
             cardan.digitsFillGrille(Convert.ToInt32(numericUpDown1.Value));
-            cardan.generateKey(Convert.ToInt32(numericUpDown1.Value));
+
+            keyBox.Text = cardan.generateKey(Convert.ToInt32(numericUpDown1.Value));
         }
 
         private void cardanGrille_SelectionChanged(object sender, EventArgs e)
@@ -46,13 +47,13 @@ namespace Cardan_grille_cipher
         private void buttonDecrypt_Click(object sender, EventArgs e)
         {
             Cardan cardan = new Cardan(this);
-            cardan.decrypt();
+            textBox.Text = cardan.decrypt(Convert.ToString(keyBox.Text), Convert.ToString(cipherTextBox.Text), Convert.ToInt32(numericUpDown1.Value));
         }
 
         private void buttonCrypt_Click(object sender, EventArgs e)
         {
             Cardan cardan = new Cardan(this);
-            cardan.crypt();
+            cipherTextBox.Text = cardan.crypt(Convert.ToString(keyBox.Text), Convert.ToString(textBox.Text), Convert.ToInt32(numericUpDown1.Value));
         }
     }
 }
