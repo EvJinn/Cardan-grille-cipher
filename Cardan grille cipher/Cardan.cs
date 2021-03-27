@@ -262,46 +262,26 @@ namespace Cardan_grille_cipher
                     FormInstanse.cardanGrille.Rows[i].Cells[j].Value = Convert.ToString(cipherText[i * k * 2 + j]);
                 }
 
-            int a = 0;
             for (int i = 0; i < k * 2; i++)
                 for (int j = 0; j < k * 2; j++)
-                {
                     if (keyGrid[i, j] == '1')
-                    {
                         text.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
-                        a++;
-                    }
-                }
 
             for (int i = 0; i < k * 2; i++)
                 for (int j = 0; j < k * 2; j++)
-                {
                     if (keyGrid[k * 2 - j - 1, i] == '1')
-                    {
                         text.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
-                        a++;
-                    }
-                }
 
             for (int i = 0; i < k * 2; i++)
                 for (int j = 0; j < k * 2; j++)
-                {
                     if (keyGrid[k * 2 - i - 1, k * 2 - j - 1] == '1')
-                    {
                         text.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
-                        a++;
-                    }
-                }
 
             for (int i = 0; i < k * 2; i++)
                 for (int j = 0; j < k * 2; j++)
-                {
                     if (keyGrid[j, k * 2 - i - 1] == '1')
-                    {
                         text.Append(Convert.ToString(FormInstanse.cardanGrille.Rows[i].Cells[j].Value));
-                        a++;
-                    }
-                }
+
             for (int i = 0; i < k * 2; i++)
                 for (int j = 0; j < k * 2; j++)
                     FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor = Color.White;
