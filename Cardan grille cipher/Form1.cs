@@ -34,7 +34,6 @@ namespace Cardan_grille_cipher
 
             Cardan cardan = new Cardan(this);
             cardan.digitsFillGrille(Convert.ToInt32(numericUpDown1.Value));
-            cardan.generateKey(Convert.ToInt32(numericUpDown1.Value));
         }
 
         private void cardanGrille_SelectionChanged(object sender, EventArgs e)
