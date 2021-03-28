@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Cardan_grille_cipher
 {
@@ -14,7 +11,7 @@ namespace Cardan_grille_cipher
         {
             FormInstanse = form;
         }
-        public void digitsFillGrille(int k)
+        public void DigitsFillGrille(int k)
         {
             Random rnd = new Random();
             int[] values = new int[k * k];
@@ -55,7 +52,7 @@ namespace Cardan_grille_cipher
                                 if (values[n] == Convert.ToInt32(FormInstanse.cardanGrille.Rows[i].Cells[j].Value)) flag = false;
                                 if (flag == false) break;
                             }
-                            if (flag == true)
+                            if (flag)
                             {
                                 FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor = Color.Red;
                                 values[a] = Convert.ToInt32(FormInstanse.cardanGrille.Rows[i].Cells[j].Value);
@@ -83,7 +80,7 @@ namespace Cardan_grille_cipher
                                 if (values[n] == Convert.ToInt32(FormInstanse.cardanGrille.Rows[i].Cells[j].Value)) flag = false;
                                 if (flag == false) break;
                             }
-                            if (flag == true)
+                            if (flag)
                             {
                                 FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor = Color.Red;
                                 values[a] = Convert.ToInt32(FormInstanse.cardanGrille.Rows[i].Cells[j].Value);
@@ -111,7 +108,7 @@ namespace Cardan_grille_cipher
                                 if (values[n] == Convert.ToInt32(FormInstanse.cardanGrille.Rows[i].Cells[j].Value)) flag = false;
                                 if (flag == false) break;
                             }
-                            if (flag == true)
+                            if (flag)
                             {
                                 FormInstanse.cardanGrille.Rows[i].Cells[j].Style.BackColor = Color.Red;
                                 values[a] = Convert.ToInt32(FormInstanse.cardanGrille.Rows[i].Cells[j].Value);
@@ -136,7 +133,7 @@ namespace Cardan_grille_cipher
                         if (values[n] == Convert.ToInt32(FormInstanse.cardanGrille.Rows[randIdxI].Cells[randIdxJ].Value)) flag = false;
                         if (flag == false) break;
                     }
-                    if (flag == true)
+                    if (flag)
                     {
                         FormInstanse.cardanGrille.Rows[randIdxI].Cells[randIdxJ].Style.BackColor = Color.Red;
                         values[a] = Convert.ToInt32(FormInstanse.cardanGrille.Rows[randIdxI].Cells[randIdxJ].Value);
@@ -148,7 +145,7 @@ namespace Cardan_grille_cipher
 
         }
 
-        public string generateKey(int k)
+        public string GenerateKey(int k)
         {
             StringBuilder key = new StringBuilder();
 
@@ -160,7 +157,7 @@ namespace Cardan_grille_cipher
             return string.Join("", key);
         }
 
-        public string crypt(string key, string text, int k)
+        public string Crypt(string key, string text, int k)
         {
             Random rnd = new Random();
             text = text.Replace(" ", "");
@@ -238,7 +235,7 @@ namespace Cardan_grille_cipher
             return string.Join("", cipherText);
         }
 
-        public string decrypt(string key, string cipherText, int k)
+        public string Decrypt(string key, string cipherText, int k)
         {
             cipherText = cipherText.Replace(" ", "");
 

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cardan_grille_cipher
@@ -33,27 +26,27 @@ namespace Cardan_grille_cipher
                 column.Width = 30;
 
             Cardan cardan = new Cardan(this);
-            cardan.digitsFillGrille(Convert.ToInt32(numericUpDown1.Value));
+            cardan.DigitsFillGrille(Convert.ToInt32(numericUpDown1.Value));
 
-            keyBox.Text = cardan.generateKey(Convert.ToInt32(numericUpDown1.Value));
+            keyBox.Text = cardan.GenerateKey(Convert.ToInt32(numericUpDown1.Value));
         }
 
         private void cardanGrille_SelectionChanged(object sender, EventArgs e)
         {
-            if (MouseButtons != System.Windows.Forms.MouseButtons.None)
+            if (MouseButtons != MouseButtons.None)
                 ((DataGridView)sender).CurrentCell = null;
         }
 
         private void buttonDecrypt_Click(object sender, EventArgs e)
         {
             Cardan cardan = new Cardan(this);
-            textBox.Text = cardan.decrypt(Convert.ToString(keyBox.Text), Convert.ToString(cipherTextBox.Text), Convert.ToInt32(numericUpDown1.Value));
+            textBox.Text = cardan.Decrypt(Convert.ToString(keyBox.Text), Convert.ToString(cipherTextBox.Text), Convert.ToInt32(numericUpDown1.Value));
         }
 
         private void buttonCrypt_Click(object sender, EventArgs e)
         {
             Cardan cardan = new Cardan(this);
-            cipherTextBox.Text = cardan.crypt(Convert.ToString(keyBox.Text), Convert.ToString(textBox.Text), Convert.ToInt32(numericUpDown1.Value));
+            cipherTextBox.Text = cardan.Crypt(Convert.ToString(keyBox.Text), Convert.ToString(textBox.Text), Convert.ToInt32(numericUpDown1.Value));
         }
     }
 }
