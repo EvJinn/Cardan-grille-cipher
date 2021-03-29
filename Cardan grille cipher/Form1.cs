@@ -16,7 +16,7 @@ namespace Cardan_grille_cipher
             numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
         }
 
-        private void numericUpDown1_ValueChanged(Object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(Object sender, EventArgs e) //Событие изменения размерности малой решётки
         {
             //int k = Convert.ToInt32(numericUpDown1.Value);
             cardanGrille.Rows.Clear();
@@ -25,13 +25,13 @@ namespace Cardan_grille_cipher
             foreach (DataGridViewColumn column in cardanGrille.Columns)
                 column.Width = 30;
 
-            Cardan cardan = new Cardan(this);
-            cardan.DigitsFillGrille(Convert.ToInt32(numericUpDown1.Value));
+            Cardan cardan = new Cardan(this); //Объект класса. Принимает эту форму в конструкторе
+            cardan.DigitsFillGrille(Convert.ToInt32(numericUpDown1.Value)); //Заполнение решётки числами, параллельно генерируется ключ
 
-            keyBox.Text = cardan.GenerateKey(Convert.ToInt32(numericUpDown1.Value));
+            keyBox.Text = cardan.GenerateKey(Convert.ToInt32(numericUpDown1.Value)); //Генерация ключа по выделенным клеткам в решётке
         }
 
-        private void cardanGrille_SelectionChanged(object sender, EventArgs e)
+        private void cardanGrille_SelectionChanged(object sender, EventArgs e) //Отмена выделения на сетке
         {
             if (MouseButtons != MouseButtons.None)
                 ((DataGridView)sender).CurrentCell = null;
@@ -39,14 +39,14 @@ namespace Cardan_grille_cipher
 
         private void buttonDecrypt_Click(object sender, EventArgs e)
         {
-            Cardan cardan = new Cardan(this);
-            textBox.Text = cardan.Decrypt(Convert.ToString(keyBox.Text), Convert.ToString(cipherTextBox.Text), Convert.ToInt32(numericUpDown1.Value));
+            Cardan cardan = new Cardan(this); 
+            textBox.Text = cardan.Decrypt(Convert.ToString(keyBox.Text), Convert.ToString(cipherTextBox.Text), Convert.ToInt32(numericUpDown1.Value)); //Расшифровываем
         }
 
         private void buttonCrypt_Click(object sender, EventArgs e)
         {
             Cardan cardan = new Cardan(this);
-            cipherTextBox.Text = cardan.Crypt(Convert.ToString(keyBox.Text), Convert.ToString(textBox.Text), Convert.ToInt32(numericUpDown1.Value));
+            cipherTextBox.Text = cardan.Crypt(Convert.ToString(keyBox.Text), Convert.ToString(textBox.Text), Convert.ToInt32(numericUpDown1.Value)); //Шифруем
         }
     }
 }
