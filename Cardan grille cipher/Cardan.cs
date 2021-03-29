@@ -19,7 +19,7 @@ namespace Cardan_grille_cipher
             int count = k * k; //Число итераций для генерации ключа
             int a = 0; //Отдельный итератор для удобного прохождения массива значений
             int countForIter = k / 2; //Число итераций генерации ключа, для итерации одного угла решётки (чтобы выборка распределилась более-менее равномерно)
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < k; i++) //Левый верхний
                 for (int j = 0; j < k; j++)
                 {
                     FormInstanse.cardanGrille.Rows[i].Cells[j].Value = i * k + j + 1; //Заполняем один угол решётки числами. Расчёт по принципу прохождения одномерного массива как двумерный
@@ -40,7 +40,7 @@ namespace Cardan_grille_cipher
             countForIter = k / 2; //Обновляем количество итераций на угол
             //Всё то же самое, за исключением прохождения таблицы под другим углом и расчёта значений несколько по-другому,
             //а также добавленной проверки на повторяющиеся значения в ключе, но об этом чуть ниже
-            for (int i = k; i < k * 2; i++) 
+            for (int i = k; i < k * 2; i++) //Правый нижний
                 for (int j = k; j < k * 2; j++)
                 {
                     FormInstanse.cardanGrille.Rows[i].Cells[j].Value = (k * 2 - i) * k + (k * 2 - j) - k;
@@ -69,7 +69,7 @@ namespace Cardan_grille_cipher
 
             //Всё то же самое, просто проходим решётку под другим углом и снова расчитываем значения по-другому
             countForIter = k / 2;
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < k; i++) //Левый нижний
                 for (int j = k; j < k * 2; j++)
                 {
                     FormInstanse.cardanGrille.Rows[j].Cells[i].Value = i * k + (k * 2 - j);
@@ -97,7 +97,7 @@ namespace Cardan_grille_cipher
                 }
 
             countForIter = k / 2;
-            for (int i = k; i < k * 2; i++)
+            for (int i = k; i < k * 2; i++) //Правый верхний
                 for (int j = 0; j < k; j++)
                 {
                     FormInstanse.cardanGrille.Rows[j].Cells[i].Value = (k * 2 - i) * k + j - k + 1;
